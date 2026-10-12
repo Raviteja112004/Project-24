@@ -40,7 +40,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
 ]
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.SessionAuthentication",
+    ],
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticated",
+    ],
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -121,7 +131,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.1/howto/static-files/
 
 STATIC_URL = 'static/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
+MODEL_ARTIFACT_STORAGE_BACKEND = 'django.core.files.storage.FileSystemStorage'
+MODEL_ARTIFACT_STORAGE_LOCATION = str(MEDIA_ROOT / 'model_artifacts')
+MODEL_ARTIFACT_MAX_UPLOAD_SIZE = 50 * 1024 * 1024
 
 # Email
 # https://docs.djangoproject.com/en/6.1/topics/email/#topic-email-configuration

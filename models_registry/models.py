@@ -40,6 +40,9 @@ class ModelArtifact(models.Model):
     )
 
     storage_uri = models.CharField(max_length=500)
+    original_filename = models.CharField(max_length=255, blank=True, default="")
+    file_size = models.PositiveBigIntegerField(default=0)
+    sha256 = models.CharField(max_length=64, blank=True, default="")
 
     created_at = models.DateTimeField(auto_now_add=True)
 
